@@ -1,0 +1,105 @@
+table:
+  name: Account
+  schema: public
+configuration:
+  column_config: {}
+  custom_column_names: {}
+  custom_name: accounts
+  custom_root_fields:
+    select_by_pk: account
+object_relationships:
+  - name: atom
+    using:
+      manual_configuration:
+        column_mapping:
+          atomId: id
+        insertion_order: null
+        remote_table:
+          name: Atom
+          schema: public
+array_relationships:
+  - name: claims
+    using:
+      manual_configuration:
+        column_mapping:
+          id: accountId
+        insertion_order: null
+        remote_table:
+          name: Claim
+          schema: public
+  - name: createdAtoms
+    using:
+      manual_configuration:
+        column_mapping:
+          id: creatorId
+        insertion_order: null
+        remote_table:
+          name: Atom
+          schema: public
+  - name: createdTriples
+    using:
+      manual_configuration:
+        column_mapping:
+          id: creatorId
+        insertion_order: null
+        remote_table:
+          name: Triple
+          schema: public
+  - name: deposits
+    using:
+      manual_configuration:
+        column_mapping:
+          id: senderId
+        insertion_order: null
+        remote_table:
+          name: Deposit
+          schema: public
+  - name: feeTransfers
+    using:
+      manual_configuration:
+        column_mapping:
+          id: senderId
+        insertion_order: null
+        remote_table:
+          name: FeeTransfer
+          schema: public
+  - name: positions
+    using:
+      manual_configuration:
+        column_mapping:
+          id: accountId
+        insertion_order: null
+        remote_table:
+          name: Position
+          schema: public
+  - name: redemptions
+    using:
+      manual_configuration:
+        column_mapping:
+          id: senderId
+        insertion_order: null
+        remote_table:
+          name: Redemption
+          schema: public
+  - name: signals
+    using:
+      manual_configuration:
+        column_mapping:
+          id: accountId
+        insertion_order: null
+        remote_table:
+          name: Signal
+          schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - type
+        - atomId
+        - id
+        - image
+        - label
+      filter: {}
+      limit: 100
+      allow_aggregations: true
+    comment: ""
